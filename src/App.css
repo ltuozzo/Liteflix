@@ -4,12 +4,12 @@ body, html {
   background: #0e0f11;
   color: #ecf0f1;
   font-family: 'Open Sans', sans-serif;
-  min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 80%;
+  width: 90%;
   margin:auto;
+  overflow-x: hidden;
 }
 
 * {
@@ -32,6 +32,7 @@ h1, p {
   overflow: scroll;
   width: 100%;
   overflow-x: hidden;
+  position:absolute;
 }
 
 .row__inner {
@@ -40,8 +41,9 @@ h1, p {
   transition: 450ms transform, 450ms -webkit-transform;
   font-size: 0;
   white-space: nowrap;
-  margin: 70.3125px 0;
+  margin: 0px 0;
   padding-bottom: 10px;
+  position: relative;
 }
 
 .tile {

@@ -1,32 +1,8 @@
 import React from 'react';
 import './App.css';
-import { fetchTopRated, fetchPopular, fetchUpcoming } from './moviesService'
-
-/*Estructura de una película*/
-const Movie = ({ movie }) => {
-  return <div class="tile">
-    <div class="tile__media">
-      <img class="tile__img" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}/>
-    </div>
-    <div class="tile__details">
-      <div class="tile__title">
-        {movie.title}
-      </div>
-      <div class="tile__genre">
-        {movie.vote_average}
-      </div>
-    </div>
-  </div>
-};
-
-/*Estructura de películas populares*/
-const PopularMovie = ({ movie }) => {
-  return <div class="tile">
-    <div class="tile__media">
-      <img class="tile__img__poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}/>
-    </div>
-  </div>
-};
+import data from './data/data';
+import MovieCard from './movieCard';
+import listaPeliculas from './moviesService'
 
 class UpcomingMovies extends React.Component {
   constructor(props) {
@@ -35,11 +11,12 @@ class UpcomingMovies extends React.Component {
     this.state = { movies: [] };
   }
 
+  /*Crear nuevo array con las películas correspondientes a esta row*/
   componentDidMount() {
-    fetchUpcoming()
-      .then(movies => this.setState({ movies }));
+    data.movieProperties.map( movies => movies.push((data.movieProperties,i) => (data.movieProperties[i].proximamente) ? data.movieProperties));
   }
 
+  /*Crear cada película individual*/
   render() {
     return React.createElement(
       "div",
@@ -56,11 +33,12 @@ class TopRatedMovies extends React.Component {
     this.state = { movies: [] };
   }
 
+  /*Crear nuevo array con las películas correspondientes a esta row*/
   componentDidMount() {
-    fetchTopRated()
-      .then(movies => this.setState({ movies }));
+    data.movieProperties.map( movies => movies.push(data.movieProperties => (data.movieProperties.mejorRankeada) ? data.movieProperties));
   }
 
+  /*Crear cada película individual*/
   render() {
     return React.createElement(
       "div",
@@ -77,11 +55,12 @@ class PopularMovies extends React.Component {
     this.state = { movies: [] };
   }
 
+  /*Crear nuevo array con las películas correspondientes a esta row*/
   componentDidMount() {
-    fetchPopular()
-      .then(movies => this.setState({ movies }));
+    data.movieProperties.map( movies => movies.push(data.movieProperties => (data.movieProperties.popular) ? data.movieProperties));
   }
 
+  /*Crear cada película individual*/
   render() {
     return React.createElement(
       "div",
@@ -91,10 +70,65 @@ class PopularMovies extends React.Component {
   }
 }
 
+class MovieSlider extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      movieProperties: data.movieProperties,
+      movieProp: data.movieProperties[0]
+    }
+  }
+
+  /*Botónes para mover la fila*/
+  nextMovie = () => {
+    const newIndex = this.state.movieProp.index+1;
+    this.setState({
+      movieProp: data.movieProperties[newIndex]
+    })
+  }
+
+  prevMovie = () => {
+    const newIndex = this.state.movieProp.index-1;
+    this.setState({
+      movieProp: data.movieProperties[newIndex]
+    })
+  }
+
+  /*Crear fila de películas*/
+  render() {
+    const {movieProperties, movieProp} = this.state;
+    return (
+      <div>
+        <button
+          onClick={() => this.nextMovie()}
+          disabled={movieProp.index === data.movieProperties.length-1}
+        >Next</button>
+        <button
+          onClick={() => this.prevMovie()}
+          disabled={movieProp.index === 0}
+        >Prev</button>
+        <div className="col">
+          <div className={`cards-slider`}>
+            <div className="cards-slider-wrapper" style={{
+              'transform': `translateX(-${movieProp.index*(100/movieProperties.length)}%)`
+            }}>
+            {
+              movieProperties.map(movieProp => <MovieCard key={movieProp._id} movieProp={movieProp} />)
+            }
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+/*App*/
 function App() {
   return (
     <div className="App">
       <div class="row">
+        <listaPeliculas />
         <h3>Próximamente</h3>
         <div class="row__inner">
           <UpcomingMovies />
