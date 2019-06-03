@@ -22,6 +22,12 @@ export const fetchPopular = () => fetch(
   .then(res => res.json())
   .then((json) => json.results)
 
+export const fetchLatest = () => fetch(
+  "https://api.themoviedb.org/3/movie/latest?api_key=6f26fd536dd6192ec8a57e94141f8b20"
+)
+  .then(res => res.json())
+  .then((json) => json.results)
+
 /*Traer generos*/
 
 export const fetchGenres = () => fetch(

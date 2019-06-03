@@ -1,8 +1,13 @@
 import React from 'react';
 import './App.css';
 import { ReactComponent as Logo } from './liteflix.svg'
-import { fetchTopRated, fetchPopular, fetchUpcoming } from './moviesService'
+import facebookLogo from './ic-facebook@1x.png'
+import instagramLogo from './ic-instagram@1x.png'
+import twitterLogo from './ic-twitter@1x.png'
+import youtubeLogo from './ic-youtube@1x.png'
+import { fetchTopRated, fetchPopular, fetchUpcoming, fetchLatest } from './moviesService'
 
+/*Barra de navegación*/
 class NavBar extends React.Component {
   render() {
     return <nav>
@@ -12,18 +17,39 @@ class NavBar extends React.Component {
       <a href="index.html">Películas</a>
       <a href="index.html">Agregados recientemente</a>
       <a href="index.html">Mi lista</a>
+      <a class="btn-modal" href="#open-modal">Agregar película</a>
     </nav>
   }
 }
 
+/*Latest movie*/
 class Hero extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { movies: [] };
+  }
+
+  componentDidMount() {
+    fetchLatest()
+      .then(movies => this.setState({ movies }));
+  }
+
   render() {
     return <div id="portada">
       <h2>ORIGINAL DE <b>LITEFLIX</b></h2>
       <h1>Kids at school</h1>
-      <br/><br/><br/><br/>
-      <p><strong>Ver temporada 1</strong></p>
-      <p>Lorem ipsum dolor amet meh freegan snackwave kombucha gastropub. Neutra cray street art freegan hoodie drinking vinegar. Before they sold out copper mug taiyaki knausgaard deep v flannel post-ironic lumbersexual selfies chillwave fanny pack tbh hammock.</p>
+      <a class="btn-hero" href="">▶ Reproducir</a><a class="btn-hero" href="">Mi lista</a>
+      <p><strong>Ver temporada 1</strong><br/><br/>
+      Lorem ipsum dolor amet meh freegan snackwave kombucha gastropub. Neutra cray street art freegan hoodie drinking vinegar. Before they sold out copper mug taiyaki knausgaard deep v flannel post-ironic lumbersexual selfies chillwave fanny pack tbh hammock.</p>
+      <div id="open-modal" class="modal-window">
+        <div>
+          <a href="#" title="Close" class="modal-close">X</a>
+          <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
+          <div><small>Sponsor</small></div>
+          <a class="btn-upload" href="">Subir Película</a>
+        </div>
+      </div>
     </div>
   }
 }
@@ -45,7 +71,7 @@ const Movie = ({ movie }) => {
   </div>
 };
 
-/*Estructura de películas populares*/
+/*Estructura de categorías*/
 const PopularMovie = ({ movie }) => {
   return <div class="tile">
     <div class="tile__media">
@@ -117,10 +143,19 @@ class PopularMovies extends React.Component {
   }
 }
 
+/*Footer*/
 class Footer extends React.Component {
   render() {
     return <div class="footer">
-      <table>
+      <table class="footerSocialMedia">
+        <tr>
+          <td><img src={facebookLogo} alt="Facebook" /></td>
+          <td><img src={instagramLogo} alt="Instagram" /></td>
+          <td><img src={twitterLogo} alt="Twitter" /></td>
+          <td><img src={youtubeLogo} alt="Youtube" /></td>
+        </tr>
+      </table>
+      <table class="footerTable">
         <tr>
           <td>Todos los títulos</td>
           <td>Cancelar subscripción</td>

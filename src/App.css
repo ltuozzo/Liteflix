@@ -33,10 +33,7 @@ h1 {
   margin: 0px;
   font-family: 'Roboto Slab', serif;
   line-height: 85px;
-}
-
-table {
-  width: 50vw;
+  margin-bottom: 30px;
 }
 
 #portada {
@@ -53,6 +50,58 @@ table {
 
 #portada h2, #portada h1, #portada p {
   width: 500px;
+}
+
+#portada p {
+  margin-top: 40px;
+}
+
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.75);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-window:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+  width: 400px;
+  position: absolute;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 2em;
+  background: #ffffff;
+  border-radius: 15px;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
 }
 
 .App {
@@ -78,6 +127,8 @@ table {
   white-space: nowrap;
   margin: 0px 0;
   padding-bottom: 10px;
+
+
 }
 
 .tile {
@@ -192,4 +243,67 @@ table {
   margin-top: 50px;
   font-size: 14px;
   color: #999;
+}
+
+.footerSocialMedia {
+  width: 15vw;
+}
+
+.footerTable {
+  width: 50vw;
+}
+
+table.footerTable tr td{
+  height: 25px;
+}
+
+.btn-modal{
+  text-decoration: none;
+  padding: 10px;
+  padding-left: 35px;
+  color: #ffffff;
+  background-color: #ff0000;
+  border-radius: 25px;
+  border: 2px solid #ff0000;
+}
+
+.btn-modal:hover{
+  color: #ff0000;
+  background-color: #ffffff;
+}
+
+.btn-hero{
+  margin-right:25px;
+  text-decoration: none;
+  padding: 15px;
+  padding-right: 35px;
+  padding-left:35px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 25px;
+  opacity: 0.6;
+}
+
+.btn-hero:hover{
+  opacity: 1;
+  color: #fff;
+  background-color: #000;
+}
+
+.btn-upload{
+  margin:auto;
+  text-decoration: none;
+  padding: 15px;
+  padding-right: 35px;
+  padding-left:35px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 25px;
+  opacity: 0.6;
+}
+
+.btn-upload{
+  opacity: 1;
+  color: #fff;
+  background-color: #000;
 }
