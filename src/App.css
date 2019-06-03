@@ -1,5 +1,4 @@
 body, html {
-  padding: 0 10px;
   margin: 0;
   background: #0e0f11;
   color: #ecf0f1;
@@ -7,8 +6,11 @@ body, html {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 90%;
   margin:auto;
+}
+
+body{
+  width: 90%;
   overflow-x: hidden;
 }
 
@@ -16,8 +18,41 @@ body, html {
   box-sizing: border-box;
 }
 
-h1, p {
-  text-align: center;
+nav {
+  margin-top: 10px;
+}
+
+nav img, nav a {
+  margin-left: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 100px;
+  margin: 0px;
+  font-family: 'Roboto Slab', serif;
+  line-height: 85px;
+}
+
+table {
+  width: 50vw;
+}
+
+#portada {
+  background-image:url("./sex-education-cover.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  padding-top: 40px;
+  margin-top: -40px;
+  padding-bottom: 100px;
+  margin-bottom: -100px;
+  padding-left: 70px;
+  margin-left: -70px;
+}
+
+#portada h2, #portada h1, #portada p {
+  width: 500px;
 }
 
 .App {
@@ -32,7 +67,7 @@ h1, p {
   overflow: scroll;
   width: 100%;
   overflow-x: hidden;
-  position:absolute;
+  overflow-y: hidden;
 }
 
 .row__inner {
@@ -43,7 +78,6 @@ h1, p {
   white-space: nowrap;
   margin: 0px 0;
   padding-bottom: 10px;
-  position: relative;
 }
 
 .tile {
@@ -64,12 +98,14 @@ h1, p {
   height: 140.625px;
   -o-object-fit: cover;
   object-fit: cover;
+  z-index: 2;
 }
 .tile__img__poster {
   width: 250px;
   height: 500px;
   -o-object-fit: cover;
   object-fit: cover;
+  z-index: 3;
 }
 
 .tile__details {
@@ -133,8 +169,8 @@ h1, p {
 }
 
 .row__inner:hover {
-  -webkit-transform: translate3d(-62.5px, 0, 0);
-  transform: translate3d(-62.5px, 0, 0);
+  -webkit-transform: translate3d(-30.5px, 0, 0);
+  transform: translate3d(-30.5px, 0, 0);
 }
 
 .row__inner:hover .tile {
@@ -142,12 +178,18 @@ h1, p {
 }
 
 .row__inner:hover .tile:hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
   opacity: 1;
 }
 
 .tile:hover~.tile {
-  -webkit-transform: translate3d(125px, 0, 0);
-  transform: translate3d(125px, 0, 0);
+  -webkit-transform: translate3d(25px, 0, 0);
+  transform: translate3d(25px, 0, 0);
+}
+
+.footer {
+  margin-top: 50px;
+  font-size: 14px;
+  color: #999;
 }
