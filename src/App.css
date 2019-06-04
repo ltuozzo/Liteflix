@@ -20,12 +20,24 @@ body{
 
 nav {
   margin-top: 10px;
+  width: 100vw;
 }
 
-nav img, nav a {
+nav img, nav a, nav div, nav div p {
   margin-left: 10px;
   color: #fff;
   text-decoration: none;
+  display: inline-block;
+}
+
+nav div {
+  width: 20vw;
+  float: right;
+}
+
+nav div p {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 h1 {
@@ -40,8 +52,8 @@ h1 {
   background-image:url("./sex-education-cover.jpg");
   background-repeat: no-repeat;
   background-size: 100vw;
-  padding-top: 40px;
-  margin-top: -40px;
+  padding-top: 60px;
+  margin-top: -60px;
   padding-bottom: 100px;
   margin-bottom: -100px;
   padding-left: 70px;
@@ -209,12 +221,6 @@ h1 {
 
 .tile__title {
   position: absolute;
-  margin-bottom: 15px;
-  padding: 10px;
-}
-
-.tile__genre {
-  position: absolute;
   bottom: 0;
   padding: 10px;
 }
@@ -265,6 +271,7 @@ table.footerTable tr td{
   background-color: #ff0000;
   border-radius: 25px;
   border: 2px solid #ff0000;
+  float:center;
 }
 
 .btn-modal:hover{

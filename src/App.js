@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { ReactComponent as Logo } from './liteflix.svg'
+import { ReactComponent as Bell } from './bell.svg'
+import { ReactComponent as Lupa } from './lupa.svg'
 import facebookLogo from './ic-facebook@1x.png'
 import instagramLogo from './ic-instagram@1x.png'
 import twitterLogo from './ic-twitter@1x.png'
@@ -18,11 +20,16 @@ class NavBar extends React.Component {
       <a href="index.html">Agregados recientemente</a>
       <a href="index.html">Mi lista</a>
       <a class="btn-modal" href="#open-modal">Agregar película</a>
+      <div class="nav-left">
+        <Lupa />
+        <p>Niños</p>
+        <Bell />
+      </div>
     </nav>
   }
 }
 
-/*Latest movie*/
+/*Latest movie y modal*/
 class Hero extends React.Component {
   constructor(props) {
     super(props);
@@ -45,8 +52,6 @@ class Hero extends React.Component {
       <div id="open-modal" class="modal-window">
         <div>
           <a href="#" title="Close" class="modal-close">X</a>
-          <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
-          <div><small>Sponsor</small></div>
           <a class="btn-upload" href="">Subir Película</a>
         </div>
       </div>
@@ -63,9 +68,6 @@ const Movie = ({ movie }) => {
     <div class="tile__details">
       <div class="tile__title">
         {movie.title}
-      </div>
-      <div class="tile__genre">
-        {movie.vote_average}
       </div>
     </div>
   </div>
