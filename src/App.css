@@ -47,6 +47,9 @@ h1 {
   line-height: 85px;
   margin-bottom: 30px;
 }
+form table {
+  width:100%
+}
 
 #portada {
   background-image:url("./sex-education-cover.jpg");
@@ -89,7 +92,7 @@ h1 {
   pointer-events: auto;
 }
 .modal-window > div {
-  width: 400px;
+  width: 600px;
   position: absolute;
   color: #000;
   top: 50%;
@@ -271,7 +274,6 @@ table.footerTable tr td{
   background-color: #ff0000;
   border-radius: 25px;
   border: 2px solid #ff0000;
-  float:center;
 }
 
 .btn-modal:hover{
@@ -298,7 +300,6 @@ table.footerTable tr td{
 }
 
 .btn-upload{
-  margin:auto;
   text-decoration: none;
   padding: 15px;
   padding-right: 35px;
@@ -306,11 +307,9 @@ table.footerTable tr td{
   color: #ffffff;
   background-color: #000000;
   border-radius: 25px;
-  opacity: 0.6;
-}
-
-.btn-upload{
   opacity: 1;
   color: #fff;
   background-color: #000;
+  display: table;
+  margin: 10px auto;
 }

@@ -49,13 +49,80 @@ class Hero extends React.Component {
       <a class="btn-hero" href="">▶ Reproducir</a><a class="btn-hero" href="">Mi lista</a>
       <p><strong>Ver temporada 1</strong><br/><br/>
       Lorem ipsum dolor amet meh freegan snackwave kombucha gastropub. Neutra cray street art freegan hoodie drinking vinegar. Before they sold out copper mug taiyaki knausgaard deep v flannel post-ironic lumbersexual selfies chillwave fanny pack tbh hammock.</p>
-      <div id="open-modal" class="modal-window">
-        <div>
-          <a href="#" title="Close" class="modal-close">X</a>
-          <a class="btn-upload" href="">Subir Película</a>
-        </div>
+      <UploadModal />
+    </div>
+  }
+}
+
+/*Modal*/
+class UploadModal extends React.Component {
+  render() {
+    return <div id="open-modal" class="modal-window">
+      <div>
+        <a href="#" title="Close" class="modal-close">X</a>
+        <UploadMovie/>
       </div>
     </div>
+  }
+}
+
+/*Upload movie*/
+class UploadMovie extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { genre: "", title: "" };
+
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeGenre = this.onChangeGenre.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onSubmit(e) {
+    e.preventDefault();
+
+    const movie = {
+      title: this.state.title,
+      genre: this.state.genre,
+    };
+
+    let uploadedMovies = localStorage.getItem("uploadedMovies");
+
+    if (uploadedMovies) {
+      uploadedMovies = JSON.parse(uploadedMovies);
+      uploadedMovies.push(movie);
+      localStorage.setItem("uploadedMovies", JSON.stringify(uploadedMovies));
+    } else {
+      localStorage.setItem("uploadedMovies", JSON.stringify([movie]));
+    }
+  }
+
+  onChangeTitle(e) {
+    this.setState({ title: e.target.value });
+  }
+
+  onChangeGenre(e) {
+    this.setState({ genre: e.target.value });
+  }
+
+  render() {
+    return <form action="" onSubmit={this.onSubmit}>
+      <label htmlFor="poster"><b>Agregar archivo</b></label><br/>
+      <input type="file" placeholder="Agregar archivo" name="poster"/><br/><br/>
+
+      <table>
+        <tr>
+          <td><label htmlFor="title"><b>Nombre de la película</b></label></td>
+          <td><label htmlFor="genre"><b>Categoría</b></label></td>
+        </tr>
+
+        <tr>
+          <td><input type="text" placeholder="Nombre de la película" name="title" onChange={this.onChangeTitle} value={this.state.title}/></td>
+          <td><input type="text" placeholder="Categoría" name="genre" onChange={this.onChangeGenre}/></td>
+        </tr>
+      </table>
+
+      <button type="submit" class="btn-upload">Subir Película</button>
+    </form>
   }
 }
 
@@ -82,6 +149,7 @@ const PopularMovie = ({ movie }) => {
   </div>
 };
 
+/*Generar filas*/
 class UpcomingMovies extends React.Component {
   constructor(props) {
     super(props);
